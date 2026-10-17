@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +15,7 @@ import com.sahayak.ai.ai.ChatTurn
 import com.sahayak.ai.ai.GeminiProvider
 import com.sahayak.ai.commands.CommandRouter
 import com.sahayak.ai.databinding.ActivityMainBinding
+import com.sahayak.ai.util.Prefs
 import com.sahayak.ai.voice.SpeechController
 import com.sahayak.ai.voice.TtsController
 import kotlinx.coroutines.CoroutineScope
@@ -27,7 +27,7 @@ import kotlinx.coroutines.withContext
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var prefs: com.sahayak.ai.util.Prefs
+    private lateinit var prefs: Prefs
     private lateinit var gemini: GeminiProvider
     private lateinit var router: CommandRouter
     private lateinit var speech: SpeechController
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        prefs = com.sahayak.ai.util.Prefs(this)
+        prefs = Prefs(this)
         gemini = GeminiProvider(prefs)
         router = CommandRouter(this)
         speech = SpeechController(this)
@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             stackFromEnd = true
         }
         binding.recycler.adapter = chatAdapter
-        chatAdapter.add(ChatMessage("model", getString(R.string.welcome_message)))
 
         binding.btnSend.setOnClickListener { sendMessage() }
         binding.btnMic.setOnClickListener { toggleMic() }
@@ -144,6 +143,7 @@ class MainActivity : AppCompatActivity() {
             is CommandResult.StopSpeaking -> {
                 tts.stop()
                 chatAdapter.add(ChatMessage("model", getString(R.string.reply_stopped)))
+                scrollToBottom()
             }
             is CommandResult.Local -> {
                 chatAdapter.add(ChatMessage("model", result.reply))
@@ -162,7 +162,7 @@ class MainActivity : AppCompatActivity() {
         updateStatus(STATUS_THINKING)
         aiJob = scope.launch {
             try {
-                val answer = gemini.chat(history, text)
+                val answer = gemini.chat(history.dropLast(1), text)
                 withContext(Dispatchers.Main) {
                     chatAdapter.add(ChatMessage("model", answer))
                     history.add(ChatTurn(fromUser = false, text = answer))
@@ -202,8 +202,6 @@ class MainActivity : AppCompatActivity() {
             else -> getString(R.string.status_idle)
         }
         binding.txtStatus.text = label
-        val busy = status != STATUS_IDLE
-        binding.btnSend.isEnabled = !busy || true // send hamesha allowed
         binding.progress.visibility = if (status == STATUS_THINKING) View.VISIBLE else View.GONE
     }
 
