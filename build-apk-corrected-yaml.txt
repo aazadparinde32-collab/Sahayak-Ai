@@ -1,0 +1,45 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code download
+        uses: actions/checkout@v4
+
+      - name: Java 17 install
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Android SDK install
+        uses: android-actions/setup-android@v3
+
+      - name: Gradle 8.7 install
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: APK build
+        run: gradle assembleDebug --no-daemon
+
+      - name: APK upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: sahayak-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: APK Release banao
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: app-v1
+          name: Sahayak AI v1 Debug APK
+          files: app/build/outputs/apk/debug/app-debug.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
