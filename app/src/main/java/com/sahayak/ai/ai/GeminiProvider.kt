@@ -68,9 +68,9 @@ class GeminiProvider(private val prefs: Prefs) : AiProvider {
             .get()
             .build()
         client.newCall(request).execute().use { resp ->
-            val raw = statusInfo(resp.code, bodyText = null)
-            if (!resp.isSuccessful) throw AiException(mapHttpError(resp.code, ""))
-            val models = JSONObject(raw ?: "").optJSONArray("models")
+            val raw = resp.body?.string().orEmpty()
+            if (!resp.isSuccessful) throw AiException(mapHttpError(resp.code, raw))
+            val models = JSONObject(raw).optJSONArray("models")
                 ?: throw AiException("Model list khaali aayi.")
             val names = mutableListOf<String>()
             for (i in 0 until models.length()) {
@@ -116,8 +116,6 @@ class GeminiProvider(private val prefs: Prefs) : AiProvider {
             else -> "API error ($code)."
         }
     }
-
-    private fun statusInfo(code: Int, bodyText: String?): String? = bodyText
 
     companion object {
         const val DEFAULT_MODEL = "gemini-2.0-flash"
