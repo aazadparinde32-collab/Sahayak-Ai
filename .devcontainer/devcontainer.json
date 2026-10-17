@@ -1,0 +1,19 @@
+{
+    "name": "Sahayak AI — Android (Kotlin)",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "none",
+            "installGradle": true
+        }
+    },
+    "postCreateCommand": "bash .devcontainer/setup-android.sh",
+    "forwardPorts": [],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "redhat.java"
+            ]
+        }
+    }
+}
