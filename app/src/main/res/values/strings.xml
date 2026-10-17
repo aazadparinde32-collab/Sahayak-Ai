@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Sahayak AI</string>
+
+    <!-- Chat screen -->
+    <string name="welcome_message">Namaste! Main Sahayak hoon, aapka personal AI assistant.\n\nTry karo: "hello", "time kya hua hai", "open whatsapp", "search india news", ya koi bhi sawaal poocho.</string>
+    <string name="input_hint">Kuch poocho ya likho…</string>
+    <string name="mic_button">Mic button</string>
+    <string name="send_button">Send button</string>
+    <string name="stop_button">Stop button</string>
+    <string name="settings">Settings</string>
+
+    <!-- Status -->
+    <string name="status_idle">Ready</string>
+    <string name="status_listening">Sun raha hoon…</string>
+    <string name="status_thinking">Soch raha hoon…</string>
+    <string name="status_speaking">Bol raha hoon…</string>
+
+    <!-- Local command replies -->
+    <string name="reply_greeting">Namaste! Main Sahayak hoon. Kya madad karun?</string>
+    <string name="reply_time">Abhi ka time: %1$s hai.</string>
+    <string name="reply_app_not_found">"%1$s" naam ka app install nahi mila.</string>
+    <string name="reply_no_number">Number samajh nahi aaya. Jaise likho: call 9876543210</string>
+    <string name="reply_stopped">Theek hai, ruk gaya.</string>
+
+    <!-- Settings screen -->
+    <string name="settings_api_section">Gemini API</string>
+    <string name="settings_api_hint">API key aistudio.google.com/apikey se free me banao. Key sirf aapke phone par save hoti hai — kisi ko mat dena. Model default gemini-2.0-flash hai (free tier).</string>
+    <string name="api_key_hint">Gemini API key (AIza…)</string>
+    <string name="model_hint">Model name (gemini-2.0-flash)</string>
+    <string name="toggle_key_visibility">Key dikhao/chhupao</string>
+    <string name="test_connection">Connection Test karo</string>
+    <string name="settings_voice_section">Voice</string>
+    <string name="voice_input_switch">Voice input (mic) — internet chahiye</string>
+    <string name="tts_switch">Responses bol ke sunao (Text-to-Speech)</string>
+    <string name="save_settings">Save karo</string>
+</resources>
