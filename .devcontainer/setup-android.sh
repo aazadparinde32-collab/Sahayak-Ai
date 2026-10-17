@@ -13,13 +13,14 @@ rm -rf tools.zip cmdline-tools-tmp
 export ANDROID_HOME="$HOME/android-sdk"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 
-echo "== 2/3: Android SDK packages install (yeh 5-10 minute lag sakta hai) =="
+echo "== 2/3: Android SDK packages install (10-15 min, progress dikhega) =="
 yes | sdkmanager --licenses > /dev/null 2>&1 || true
-sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" > /dev/null
+sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
-echo "== 3/3: local.properties likh rahe hain (repo me commit NAHI hota) =="
+echo ""
+echo "== 3/3: local.properties likh rahe hain =="
 cd "$OLDPWD"
-echo "sdk.dir=$ANDROID_HOME" > local.properties
+echo "sdk.dir=$HOME/android-sdk" > local.properties
 echo "local.properties likha gaya (gitignored hai)."
 
 echo ""
