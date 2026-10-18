@@ -3,6 +3,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-feature android:name="android.hardware.microphone" android:required="false" />
 
     <queries>
@@ -14,6 +15,15 @@
         <!-- Speech recognition service check -->
         <intent>
             <action android:name="android.speech.RecognitionService" />
+        </intent>
+        <!-- WhatsApp text share (Android 11+ package visibility) -->
+        <package android:name="com.whatsapp" />
+        <!-- Clock timer/alarm intents -->
+        <intent>
+            <action android:name="android.intent.action.SET_TIMER" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SET_ALARM" />
         </intent>
     </queries>
 

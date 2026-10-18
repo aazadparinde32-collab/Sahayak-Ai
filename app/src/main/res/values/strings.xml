@@ -2,7 +2,7 @@
     <string name="app_name">Sahayak AI</string>
 
     <!-- Chat screen -->
-    <string name="welcome_message">Namaste! Main Sahayak hoon, aapka personal AI assistant.\n\nTry karo: "hello", "time kya hua hai", "open whatsapp", "search india news", ya koi bhi sawaal poocho.</string>
+    <string name="welcome_message">Namaste! Main Sahayak hoon, aapka personal AI assistant.\n\nNaya dark theme + naye commands:\n• "open whatsapp"\n• "youtube lofi study mix"\n• "timer 5 minute"\n• "alarm 7 am"\n• "date kya hai"\n• "search india news"\n• "call 9876543210"\nAI chat ke liye Settings me Gemini API key daalo (free: aistudio.google.com/apikey).</string>
     <string name="input_hint">Kuch poocho ya likho…</string>
     <string name="mic_button">Mic button</string>
     <string name="send_button">Send button</string>
@@ -18,9 +18,15 @@
     <!-- Local command replies -->
     <string name="reply_greeting">Namaste! Main Sahayak hoon. Kya madad karun?</string>
     <string name="reply_time">Abhi ka time: %1$s hai.</string>
+    <string name="reply_date">Aaj ki date: %1$s hai.</string>
     <string name="reply_app_not_found">"%1$s" naam ka app install nahi mila.</string>
     <string name="reply_no_number">Number samajh nahi aaya. Jaise likho: call 9876543210</string>
     <string name="reply_stopped">Theek hai, ruk gaya.</string>
+    <string name="reply_timer_set">Timer set kiya: %1$s — clock app khul raha hai, "Start" aap khud dabana.</string>
+    <string name="reply_alarm_set">Alarm set kiya: %1$s — "OK" aap khud dabana.</string>
+    <string name="reply_youtube">YouTube par search kar raha hoon: %1$s</string>
+    <string name="reply_whatsapp_draft">WhatsApp khol raha hoon — message ka draft ready hoga, "Send" aap khud dabana.</string>
+    <string name="reply_whatsapp_not_found">WhatsApp install nahi mila.</string>
 
     <!-- Settings screen -->
     <string name="settings_api_section">Gemini API</string>
